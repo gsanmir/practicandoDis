@@ -21,21 +21,29 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Theme("mytheme")
 public class MyUI extends UI {
-
+	
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+    	Lista lista = new Lista();
+    	
         final VerticalLayout layout = new VerticalLayout();
         
         final TextField name = new TextField();
         name.setCaption("Type your name here:");
+        final TextField surname = new TextField();
+        surname.setCaption("Type your name here:");
+        final TextField age = new TextField();
+        age.setCaption("Type your name here:");
 
         Button button = new Button("Click Me");
         button.addClickListener(e -> {
             layout.addComponent(new Label("Thanks " + name.getValue() 
                     + ", it works!"));
+            Alumno u = new Alumno(name.getValue(), surname.getValue(), Integer.parseInt(age.getValue()));
+            lista.addAlumno(u);
         });
         
-        layout.addComponents(name, button);
+        layout.addComponents(name, surname, age, button);
         
         setContent(layout);
     }
